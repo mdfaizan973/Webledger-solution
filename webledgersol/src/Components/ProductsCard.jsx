@@ -1,7 +1,18 @@
 import { Link as RouterLink } from "react-router-dom";
+import { useState } from "react";
 export default function ProductsCard(recipesdata) {
   const data = recipesdata.recipesdata;
-  //   console.log("recipesdata", data);
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("favitem")) || []
+  );
+  const handlefav = (recipe) => {
+    const isAlreadyInFavorites = favorites.some((fav) => fav.id === recipe.id);
+    if (!isAlreadyInFavorites) {
+      const newFavorites = [...favorites, recipe];
+      setFavorites(newFavorites);
+      localStorage.setItem("favitem", JSON.stringify(newFavorites));
+    }
+  };
 
   return (
     <div className="mt-10">
@@ -21,13 +32,18 @@ export default function ProductsCard(recipesdata) {
                   <p className="mt-2">{ele.pricePerServing} ₹</p>
                 </div>
                 <div>
-                  <button className="text-white text-sm font-semibold bg-pink-400 py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-500 transform-gpu hover:scale-110 ">
-                    Favourite
+                  <button
+                    onClick={() => handlefav(ele)}
+                    className="text-white text-sm font-semibold bg-pink-400 py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-500 transform-gpu hover:scale-110"
+                  >
+                    {favorites.some((fav) => fav.id === ele.id)
+                      ? "Favorited"
+                      : "Favorite"}
                   </button>
                 </div>
                 <div>
                   <RouterLink to={`/products/${ele.id}`}>
-                    <button className="text-white text-sm font-semibold bg-green-400 py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-500 transform-gpu hover:scale-110 ">
+                    <button className="text-white text-sm font-semibold bg-green-400 py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-500 transform-gpu hover:scale-110">
                       View
                     </button>
                   </RouterLink>

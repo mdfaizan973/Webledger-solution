@@ -67,9 +67,11 @@ export default function Products() {
               </svg>
             </button>
           </div>
-          <button className="text-white text-sm font-semibold bg-pink-400 py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-500 transform-gpu hover:scale-110 ">
-            Favourite
-          </button>
+          <RouterLink to="/favorites">
+            <button className="text-white text-sm font-semibold bg-pink-400 py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-500 transform-gpu hover:scale-110 ">
+              Favourite
+            </button>
+          </RouterLink>
         </div>
       </div>
       {load ? <Loading /> : <ProductsCard recipesdata={data} />}
