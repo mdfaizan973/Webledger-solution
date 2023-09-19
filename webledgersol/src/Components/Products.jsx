@@ -8,7 +8,7 @@ export default function Products() {
   const [search, setSearch] = useState("checken");
   const [load, setLoad] = useState(false);
   const Base_url =
-    "https://api.spoonacular.com/recipes/random?number=20&apiKey=9afc3e70fb82460a9e18aa8e2cfaf9fe";
+    "https://api.spoonacular.com/recipes/random?number=20&apiKey=8c7d49b79faf4d3c9f5807f7034af8d5";
   const fetchRecipe = (search = "") => {
     setLoad(true);
     let url = `${Base_url}`;
@@ -27,7 +27,8 @@ export default function Products() {
   useEffect(() => {
     fetchRecipe(search);
   }, [search]);
-  console.log(data);
+  // console.log(data);
+
   return (
     <div>
       <div className="bg-white-500 shadow-md p-4">

@@ -39,11 +39,7 @@ export default function Favorites() {
             <div className="rounded-2xl rounded-lg shadow-2xl m-4 mb-1">
               <img className="w-auto rounded-lg" src={ele.image} />
             </div>
-            <div className="p-8">
-              <h2 className="font-bold text-2xl mb-2 text-gray-800">
-                {ele.title.substring(0, 12)}....
-              </h2>
-            </div>
+
             <div className="p-4 border-t-2 border-solid border-gray-200">
               <button
                 onClick={() => deletedata(i)}

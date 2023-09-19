@@ -7,7 +7,7 @@ export default function Details() {
   const [recipe, setRecipe] = useState({});
   const { id } = useParams();
 
-  const Base_url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=9afc3e70fb82460a9e18aa8e2cfaf9fe`;
+  const Base_url = `https://api.spoonacular.com/recipes/${id}/information?apiKey=8c7d49b79faf4d3c9f5807f7034af8d5`;
 
   useEffect(() => {
     axios
