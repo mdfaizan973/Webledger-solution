@@ -1,27 +1,31 @@
 import ProductsCard from "./ProductsCard";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Loading from "./Loading";
 export default function Products() {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
+  const [load, setLoad] = useState(false);
   const Base_url =
     "https://api.spoonacular.com/recipes/random?number=20&apiKey=5c518d49481941d4a8f204a0680f05f9";
-
   const fetchRecipe = (search = "") => {
+    setLoad(true);
     let url = `${Base_url}`;
     if (search) {
       url += `&query=${search}`;
     }
     axios
       .get(url)
-      .then((res) => setData(res.data.recipes))
+      .then((res) => {
+        setData(res.data.recipes);
+        setLoad(false);
+      })
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
     fetchRecipe(search);
   }, [search]);
-  console.log("search", data);
   return (
     <div>
       <div className="bg-white-500 shadow-md  p-4">
@@ -64,8 +68,7 @@ export default function Products() {
           </button>
         </div>
       </div>
-
-      <ProductsCard recipesdata={data} />
+      {load ? <Loading /> : <ProductsCard recipesdata={data} />}
     </div>
   );
 }

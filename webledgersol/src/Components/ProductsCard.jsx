@@ -5,7 +5,7 @@ export default function ProductsCard(recipesdata) {
 
   return (
     <div className="mt-10">
-      <div className="min-h-screen bg-gray-100 grid grid-cols-4 gap-4 items-center">
+      <div className="min-h-screen  grid grid-cols-4 gap-4 items-center">
         {data &&
           data.map((ele, i) => (
             <div
