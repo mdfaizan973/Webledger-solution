@@ -1,13 +1,14 @@
 import ProductsCard from "./ProductsCard";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link as RouterLink } from "react-router-dom";
 import Loading from "./Loading";
 export default function Products() {
   const [data, setData] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("checken");
   const [load, setLoad] = useState(false);
   const Base_url =
-    "https://api.spoonacular.com/recipes/random?number=20&apiKey=5c518d49481941d4a8f204a0680f05f9";
+    "https://api.spoonacular.com/recipes/random?number=20&apiKey=9afc3e70fb82460a9e18aa8e2cfaf9fe";
   const fetchRecipe = (search = "") => {
     setLoad(true);
     let url = `${Base_url}`;
@@ -26,16 +27,19 @@ export default function Products() {
   useEffect(() => {
     fetchRecipe(search);
   }, [search]);
+  console.log(data);
   return (
     <div>
-      <div className="bg-white-500 shadow-md  p-4">
+      <div className="bg-white-500 shadow-md p-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="text-white text-xl font-bold flex items-center ">
-            <img
-              src="https://webledger.in/wp-content/uploads/2023/01/logo.png"
-              alt="Logo"
-              className="h-8 w-50 mr-2"
-            />
+            <RouterLink to="/">
+              <img
+                src="https://webledger.in/wp-content/uploads/2023/01/logo.png"
+                alt="Logo"
+                className="h-8 w-50 mr-2"
+              />
+            </RouterLink>
           </div>
 
           <div className="relative flex items-center">
