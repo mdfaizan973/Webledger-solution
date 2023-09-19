@@ -1,8 +1,10 @@
+import { Link as RouterLink } from "react-router-dom";
 export default function ProductsCard(recipesdata) {
   const data = recipesdata.recipesdata;
-  console.log("recipesdata", data);
+  //   console.log("recipesdata", data);
+
   return (
-    <div>
+    <div className="mt-10">
       <div className="min-h-screen bg-gray-100 grid grid-cols-4 gap-4 items-center">
         {data &&
           data.map((ele, i) => (
@@ -20,13 +22,15 @@ export default function ProductsCard(recipesdata) {
                 </div>
                 <div>
                   <button className="text-white text-sm font-semibold bg-pink-400 py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-500 transform-gpu hover:scale-110 ">
-                    Fav
+                    Favourite
                   </button>
                 </div>
                 <div>
-                  <button className="text-white text-sm font-semibold bg-green-400 py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-500 transform-gpu hover:scale-110 ">
-                    View
-                  </button>
+                  <RouterLink to={`/products/${ele.id}`}>
+                    <button className="text-white text-sm font-semibold bg-green-400 py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-500 transform-gpu hover:scale-110 ">
+                      View
+                    </button>
+                  </RouterLink>
                 </div>
               </div>
             </div>
